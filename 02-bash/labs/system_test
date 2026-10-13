@@ -1,0 +1,37 @@
+#!/bin/bash 
+
+echo "enter status code" 
+read user
+if [[ ! $user =~ ^[0-9]+$ ]]; then 
+echo "this is not a valid number"
+ fi 
+
+ if [[ $user -eq 0 ]]
+then 	
+	echo "this is a success"
+
+ fi 
+
+ if [[ $user -eq 1 ]]
+
+then 
+	echo "system warning" 
+ fi 
+
+ if [[ $user -eq 2 ]]
+ then 
+	 echo "system error" 
+
+fi 
+
+if [[ $user -gt 2 ]]
+then 
+	echo "invalid status code"
+fi 
+
+
+
+
+
+
+
