@@ -1,0 +1,25 @@
+#!/bin/bash 
+
+mkdir battlefield 
+cd battlefield 
+touch knight.txt sorcerer.txt rogue.txt
+cd ..
+if [ -f battlefield/knight.txt ]
+then 
+
+mkdir -p archive 
+mv battlefield/knight.txt archive/
+echo "knight.txt has been moved to archive"
+
+else 
+	echo "knight.txt does not exist"
+
+fi 
+
+echo "contents of battlefield:"
+ls battlefield 
+
+echo "contents of archive:"
+ls archive 
+
+

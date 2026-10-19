@@ -1,0 +1,13 @@
+#!/bin/bash 
+
+if [ -f arena/hero.txt ]
+
+then 
+
+echo "hero.txt found"
+
+else 
+
+echo "hero.txt not found g"
+
+fi 
