@@ -87,3 +87,14 @@ In this project, I created a **NGINX** web server on a hosted **AWS** **EC2** In
 - You will be greeted with the default Welcome to nginx! page
 
 <img width="1917" height="906" alt="Screenshot 2026-10-19 163834" src="https://github.com/user-attachments/assets/331e64a5-0e8b-4711-97d9-c10cd4f36b33" />
+
+## Step 8 - Customising your NGINX page 
+
+- Navigate to your NGINX file using:
+
+  **sudo vim /var/www/html/index.nginx-debian.html**
+- Customise it however you want
+  <img width="1917" height="907" alt="Screenshot 2026-10-19 194801" src="https://github.com/user-attachments/assets/a09bdd52-b39b-4380-9cdd-a96bc4b84471" />
+- Save (:wq!)
+- You now have your custom NGINX page
+<img width="1917" height="902" alt="Screenshot 2026-10-19 194710" src="https://github.com/user-attachments/assets/a38cba3f-0b3b-4ef4-83ab-d93b354dd648" />
