@@ -39,7 +39,7 @@ In this project, I created a **NGINX** web server on a hosted **AWS** **EC2** In
 - Then copy in your SSH command from AWS 
 - ssh -i "your-key-name.pem" ubuntu@your-ec2-public-dns
 
-  <img width="1411" height="692" alt="Screenshot 2026-10-19 171146" src="https://github.com/user-attachments/assets/c422f33b-cfc0-48da-8ef5-bc2e386fcf3e" />
+<img width="1917" height="179" alt="Screenshot 2026-10-16 161816" src="https://github.com/user-attachments/assets/5802dc9f-5bb7-4058-a64c-6d0e75126760" />
 
 
 ## Step 4 - Installing NGINX
