@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ 
+	echo "enter two values"
+	read num1
+	read num2
+
+addition=$((num1 + num2))
+subtraction=$((num1 - num2))
+multiplication=$((num1 * num2))
+division=$((num1 / num2))
+
+echo "$num1 + $num2 = $addition"
+echo "$num1 - $num2 = $subtraction"
+echo "$num1 * $num2 = $multiplication"
+echo "$num1 / $num2 = $division"

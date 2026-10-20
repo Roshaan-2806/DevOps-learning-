@@ -1,0 +1,20 @@
+#!/bin/bash 
+
+echo "Enter source directory:"
+read directory
+
+if [ -d "$directory" ]
+then 
+	backup_stamp=$(date +%Y-%m-%d_%H-%M)
+mkdir -p backup_directory_$backup_stamp
+cp "$directory"/*.txt "backup_directory_$backup_stamp/"
+
+count=$( ls "backup_directory_$backup_stamp"/*.txt | wc -l )
+
+echo "Backup complete! file count: $count"
+else 
+	echo "Source directory does not exist"
+	
+fi 
+
+

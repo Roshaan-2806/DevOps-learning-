@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkdir -p bash_demo
+cd bash_demo
+echo  "the date today is: $(date +%F)" > demo.txt
+cat  demo.txt
+
