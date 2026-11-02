@@ -6,7 +6,7 @@
 
 *What is VisitPulse Pro?*
 
-Visitpulse pro is a web application I created which trakcs the number of times the webpage has been visited and shows the location in which people are visiting from and stores the value of how many people have visited from each country. 
+Visitpulse pro is a web application I created which tracks the number of times the webpage has been visited and shows the location in which people are visiting from and stores the value of how many people have visited from each country. 
 
 *What was the aim?*
 
@@ -14,7 +14,7 @@ The aim of this project was to create a simple web application, and containerise
 
 *How does it work?*
 
-I started of with creating a flask web application, where I then progressed into creating a redis database to store the visit counts of the webpage, which required a nginx server to act as a reverse proxy to handle large workflows with the use of one port, before adding a GeopIP database from dockerhub to retrieve the IP address of visitors to find the location, and send the information to flask. I then created a .compose YAML file to enable the containers to run together and communicate on a local network. 
+I started of with creating a flask web application, where I then progressed into creating a redis database to store the visit counts of the webpage, which required a nginx server to act as a reverse proxy to handle large workflows with the use of one port, before adding a GeoIP database from dockerhub to retrieve the IP address of visitors to find the location, and send the information to flask. I then created a .compose *YAML* file to enable the containers to run together and communicate on a local network. 
 
 ## Creating the Project:
 
@@ -22,19 +22,19 @@ I started of with creating a flask web application, where I then progressed into
 
 - I began creating a basic python web application
 - The code already imported flask and was configured to return a basic welcome message
-- We then configured the code to create VisitPlulse Pro and to add a HTML and CSS to customise the webpage
+- We then configured the code to create VisitPulse Pro and to add a HTML and CSS to customise the webpage
 - We began to add more routes to integrate additional servers:
    - */* - The original Welcome page
    - */count* - The count page which displayed the number of times a visitor visited the page
    - */about* - An about page to provide further detail about me and the website
-   - */GeoIP* - This displayes the country of the visitors
+   - */GeoIP* - This displays the country of the visitors
 
 *Redis Database:*
 
 - This was integrated to store the data for the flask website
 - Redis uses port 6379 which was configured in the app.py code
 - We gave redis an environment variable (Redis_host, Redis_port)
-- Redis was the database which stored the totoal visit count and number of visits from each country
+- Redis was the database which stored the total visit count and number of visits from each country
 <img width="482" height="97" alt="Screenshot 2026-11-02 144344" src="https://github.com/user-attachments/assets/b976ad12-6c53-4602-a815-b4330147ffba" />
 
 
@@ -46,24 +46,24 @@ I started of with creating a flask web application, where I then progressed into
 -  This provided 3 containers, which have a internal docker port of 5000 however they could not listen to port 5000 on our local host
 -  We required a reverse proxy to direct traffic flow to the 3 containers and to ease the load on one container. This is known as load balancing
 -  Thus, we used nginx
--  This is useful for when the website is deadling with large requests, and it allows the applications to run smoothly.
+-  This is useful for when the website is dealing with large requests, and it allows the applications to run smoothly.
 
 <img width="620" height="332" alt="Screenshot 2026-11-02 144504" src="https://github.com/user-attachments/assets/c72cb7b9-4753-4359-b242-1a4065dbc5e8" />
 
 
 
-*GeopIP for location data:*
+*GeoIP for location data:*
 
-- GeopIP is a server which finds the location of IP addresses
-- I pulled the GeopIP image from docker hub using :
+- GeoIP is a server which finds the location of IP addresses
+- I pulled the GeoIP image from docker hub using :
      - *docker pull gsmlg/geoip2:embed*
 - This is an image already configured
 - I then run the image on my local host using:
-     - *docker run -d --name geopip -p 8000:8000 gsmlg/geopip2 -addr :8000*
-- This give us a name for the container, maps the container to our laptop port and tells geopIP to listen to port 8000
+     - *docker run -d --name geoip -p 8000:8000 gsmlg/geoip2:embed -addr :8000*
+- This give us a name for the container, maps the container to our laptop port and tells geoIP to listen to port 8000
 - This runs our image to test it
-- I then integrate GeopIP into our flask application by changing app.py
-- GeopIP now sends the location of users IP addresses to flask, which displays it on the website
+- I then integrate GeoIP into our flask application by changing app.py
+- GeoIP now sends the location of users IP addresses to flask, which displays it on the website
 
 <img width="278" height="111" alt="image" src="https://github.com/user-attachments/assets/e1eba917-d960-4bfe-9a62-ee7a1a9de116" />
 
@@ -86,13 +86,13 @@ I started of with creating a flask web application, where I then progressed into
 
 Building the image:
 
-- Once we have confiured our dockerfile, we can build it
+- Once we have configured our dockerfile, we can build it
 - This creates the actual image with all the information we have passed into it:
      - *Docker build -t flask-application .*
        
 *What does this do?*
 - *docker build* tells docker to create the image
-- *-t flask-application* tags our flask applcation with a name (flask-application)
+- *-t flask-application* tags our flask application with a name (flask-application)
 - *.* tells docker to build our image in this directory
 
 
@@ -107,7 +107,7 @@ Building the image:
   *Note for next time:*
 
 - I created a new dockerfile for the redis image however, this was not necessary. There already exists a redis image on docker hub hence I only used two commands on the dockerfile to configure the image. I could have included the pre-built image on the *YAML* file instead of creating a new one.  
-- I did this for the GeopIP. I learnt to use pre-existing images and I found it on dockerhub before adding it directly to my *YAML* file, isntead of creating a new dockerfile. 
+- I did this for the GeoIP. I learnt to use pre-existing images and I found it on dockerhub before adding it directly to my *YAML* file, instead of creating a new dockerfile. 
 <img width="1901" height="447" alt="Screenshot 2026-11-02 143436" src="https://github.com/user-attachments/assets/b15d4888-4a8d-4562-bebd-3e6a68117e60" />
 
 ## *Docker Compose YAML file:*
@@ -123,7 +123,7 @@ Building the image:
      - A flask web container 
      - An Nginx container (The reverse proxy for load balancing
      - A redis container (This stores the data to count the number of visits)
-     - A GeopIP container (finds the location of the visitors using their IP address)
+     - A GeoIP container (finds the location of the visitors using their IP address)
      - A custom network is created for all the containers to communicate with each other
 - The command I run to start the defined *yml* file is:
      - *Docker-compose up*
@@ -156,9 +156,9 @@ Building the image:
 - Each time we start the containers, we want our visit count to remain the same and remembered by redis.
 - To do this, we must create a volume in our *YAML* file
  <img width="388" height="447" alt="Screenshot 2026-11-02 174733" src="https://github.com/user-attachments/assets/e1532976-d42d-4601-a4ed-861d1e18e6fe" />
-- redis-data is the container where the redis data is stored
+- redis-data is the named docker volume thats stores the redis data 
 - /data is the folder within the redis container which stores the visits
-- Volume is then used to as a seperate storage box which stores all the redis data
+- Volume is then used to as a separate storage box which stores all the redis data
 - This means even if the redis container is stopped or removed, volume keeps the data, ready to reconnect to the redis container
 - The volume at the bottom tells docker compose to create a volume for redis-data 
 
@@ -171,7 +171,7 @@ Building the image:
   - We used *CSS* and *HTML* to improve the quality of our website
   - We improved the layout
   - Added color schemes
-  - Incuded links to my linkedIn page
+  - Included links to my linkedIn page
   
 <img width="1917" height="901" alt="image" src="https://github.com/user-attachments/assets/35485f0a-7ea1-49c0-8760-4d2913c64b3d" />
 
