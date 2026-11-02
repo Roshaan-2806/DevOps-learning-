@@ -158,7 +158,7 @@ Building the image:
  <img width="388" height="447" alt="Screenshot 2026-11-02 174733" src="https://github.com/user-attachments/assets/e1532976-d42d-4601-a4ed-861d1e18e6fe" />
 - redis-data is the named docker volume thats stores the redis data 
 - /data is the folder within the redis container which stores the visits
-- Volume is then used to as a separate storage box which stores all the redis data
+- Volume is then used as a separate storage box which stores all the redis data
 - This means even if the redis container is stopped or removed, volume keeps the data, ready to reconnect to the redis container
 - The volume at the bottom tells docker compose to create a volume for redis-data 
 
